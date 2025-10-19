@@ -1,99 +1,73 @@
-/* === RightDownBtn 样式修复 === */
-#RightDownBtn {
-    position: fixed;
-    left: 1.875rem;
-    bottom: 1.875rem;
-    padding: 0.3125rem 0.625rem;
-    background: #fff;
-    border-radius: 0.1875rem;
-    transition: 0.3s ease all;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  
-  #RightDownBtn > a,
-  #RightDownBtn > label {
-    width: 1.5em;
-    height: 1.5em;
-    margin: 0.3125rem 0;
-    transition: .2s cubic-bezier(.25, .46, .45, .94);
-  }
-  
-  /* === 基础暗色字体 === */
-  .DarkMode body,
-  .DarkMode #page,
-  .DarkMode #colophon,
-  .DarkMode #main-container,
-  .DarkMode #content,
-  .DarkMode #footer {
-    background-color: #292a2d;
-    color: rgba(255, 255, 255, .6);
-  }
-  
-  .DarkMode a,
-  .DarkMode strong,
-  .DarkMode p,
-  .DarkMode li,
-  .DarkMode .label {
-    color: rgba(255, 255, 255, .7);
-  }
-  
-  /* === 图片亮度控制（避免与 JS 反色冲突）=== */
-  .DarkMode img:not(.footer-images img) {
-    filter: brightness(.85);
-    transition: filter 0.5s ease;
-  }
-  
-  /* === Cuteen 动画层 === */
-  .Cuteen_DarkSky,
-  .Cuteen_DarkSky:before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-  }
-  
-  .Cuteen_DarkSky {
-    background: linear-gradient(#feb8b0, #fef9db);
-  }
-  
-  .Cuteen_DarkSky:before {
-    transition: opacity 2s ease;
-    opacity: 0;
-    background: linear-gradient(#4c3f6d, #6c62bb, #93b1ed);
-  }
-  
-  .DarkMode .Cuteen_DarkSky:before {
-    opacity: 1;
-  }
-  
-  /* === 行星动画效果 === */
-  .Cuteen_DarkPlanet {
-    z-index: 1000000;
-    position: fixed;
-    left: -50%;
-    top: -50%;
-    width: 200%;
-    height: 200%;
-    animation: CuteenPlanetMove 2s cubic-bezier(.7, 0, 0, 1);
-    transform-origin: center bottom;
-  }
-  
-  @keyframes CuteenPlanetMove {
-    0% { transform: rotate(0); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .Cuteen_DarkPlanet:after {
-    position: absolute;
-    left: 35%;
-    top: 40%;
-    width: 9.375rem;
-    height: 9.375rem;
-    border-radius: 50%;
-    content: "";
-    background: linear-gradient(#fefefe, #fffbe8);
-  }
-  
+/* === Volantis v5 暗黑模式切换样式 === */
+
+/* 通用暗色模式 */
+html.DarkMode, 
+body.DarkMode {
+  background-color: #1e1e1f !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* 链接颜色 */
+html.DarkMode a {
+  color: #9dc6ff !important;
+}
+
+/* 图片稍微暗化避免刺眼 */
+html.DarkMode img {
+  filter: brightness(0.8);
+  transition: filter 0.5s ease;
+}
+
+/* 卡片和容器 */
+html.DarkMode .card,
+html.DarkMode #page,
+html.DarkMode #content {
+  background-color: #2b2b2e !important;
+  box-shadow: none !important;
+}
+
+/* 夜空动画背景 */
+.Cuteen_DarkSky,
+.Cuteen_DarkSky::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.Cuteen_DarkSky {
+  background: linear-gradient(#feb8b0, #fef9db);
+}
+
+.Cuteen_DarkSky::before {
+  transition: 2s ease all;
+  opacity: 0;
+  background: linear-gradient(#3a3a5c, #6c62bb, #93b1ed);
+}
+
+.DarkMode .Cuteen_DarkSky::before {
+  opacity: 1;
+}
+
+/* 旋转的行星动画 */
+.Cuteen_DarkPlanet {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin-left: -75px;
+  margin-top: -75px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fffbe8, #dcdcdc);
+  animation: planetSpin 2s cubic-bezier(.7, 0, 0, 1);
+  z-index: 100000;
+}
+
+@keyframes planetSpin {
+  0% { transform: rotate(0deg); opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 0; }
+}
