@@ -1,33 +1,6 @@
-/* === Volantis v5 暗黑模式切换样式 === */
+/* === Volantis 暗黑模式切换过渡动画样式 === */
+/* 上传到 CDN 后引入 */
 
-/* 通用暗色模式 */
-html.DarkMode, 
-body.DarkMode {
-  background-color: #1e1e1f !important;
-  color: rgba(255, 255, 255, 0.85) !important;
-  transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-/* 链接颜色 */
-html.DarkMode a {
-  color: #9dc6ff !important;
-}
-
-/* 图片稍微暗化避免刺眼 */
-html.DarkMode img {
-  filter: brightness(0.8);
-  transition: filter 0.5s ease;
-}
-
-/* 卡片和容器 */
-html.DarkMode .card,
-html.DarkMode #page,
-html.DarkMode #content {
-  background-color: #2b2b2e !important;
-  box-shadow: none !important;
-}
-
-/* 夜空动画背景 */
 .Cuteen_DarkSky,
 .Cuteen_DarkSky::before {
   content: "";
@@ -47,7 +20,7 @@ html.DarkMode #content {
   background: linear-gradient(#3a3a5c, #6c62bb, #93b1ed);
 }
 
-.DarkMode .Cuteen_DarkSky::before {
+html.DarkMode .Cuteen_DarkSky::before {
   opacity: 1;
 }
 
