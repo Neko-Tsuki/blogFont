@@ -1,17 +1,30 @@
-// === Volantis 暗黑模式切换动画（独立模块） ===
-// 上传到 CDN 并在主题 darkmode 模块之后加载
+// === Volantis v5 暗黑模式切换动画 (FontAwesome版) ===
+// 依赖 FontAwesome 图标库
 
 function DarkModeTransition() {
-  const $sky = $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>');
+  const isDark = document.documentElement.classList.contains('DarkMode');
+  const iconClass = isDark ? 'fa-sun sun' : 'fa-moon moon';
+
+  const $sky = $(`
+    <div class="Cuteen_DarkSky">
+      <i class="fa-solid ${iconClass} Cuteen_DarkIcon"></i>
+    </div>
+  `);
+
   $('body').append($sky);
+
+  // 触发进入动画
+  setTimeout(() => $sky.addClass('show'), 50);
+
+  // 动画完成后移除
   setTimeout(() => {
-    $sky.fadeOut(1000, function () {
+    $sky.fadeOut(800, function () {
       $(this).remove();
     });
   }, 1500);
 }
 
-// Hook 到现有 darkmode 切换逻辑
+// 将动画注册到 Volantis 的 darkmode 切换钩子
 if (window.volantis && volantis.dark && typeof volantis.dark.push === 'function') {
   volantis.dark.push(DarkModeTransition);
 }
