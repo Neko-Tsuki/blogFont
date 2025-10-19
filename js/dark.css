@@ -1,0 +1,99 @@
+/* === RightDownBtn 样式修复 === */
+#RightDownBtn {
+    position: fixed;
+    left: 1.875rem;
+    bottom: 1.875rem;
+    padding: 0.3125rem 0.625rem;
+    background: #fff;
+    border-radius: 0.1875rem;
+    transition: 0.3s ease all;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  #RightDownBtn > a,
+  #RightDownBtn > label {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.3125rem 0;
+    transition: .2s cubic-bezier(.25, .46, .45, .94);
+  }
+  
+  /* === 基础暗色字体 === */
+  .DarkMode body,
+  .DarkMode #page,
+  .DarkMode #colophon,
+  .DarkMode #main-container,
+  .DarkMode #content,
+  .DarkMode #footer {
+    background-color: #292a2d;
+    color: rgba(255, 255, 255, .6);
+  }
+  
+  .DarkMode a,
+  .DarkMode strong,
+  .DarkMode p,
+  .DarkMode li,
+  .DarkMode .label {
+    color: rgba(255, 255, 255, .7);
+  }
+  
+  /* === 图片亮度控制（避免与 JS 反色冲突）=== */
+  .DarkMode img:not(.footer-images img) {
+    filter: brightness(.85);
+    transition: filter 0.5s ease;
+  }
+  
+  /* === Cuteen 动画层 === */
+  .Cuteen_DarkSky,
+  .Cuteen_DarkSky:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+  }
+  
+  .Cuteen_DarkSky {
+    background: linear-gradient(#feb8b0, #fef9db);
+  }
+  
+  .Cuteen_DarkSky:before {
+    transition: opacity 2s ease;
+    opacity: 0;
+    background: linear-gradient(#4c3f6d, #6c62bb, #93b1ed);
+  }
+  
+  .DarkMode .Cuteen_DarkSky:before {
+    opacity: 1;
+  }
+  
+  /* === 行星动画效果 === */
+  .Cuteen_DarkPlanet {
+    z-index: 1000000;
+    position: fixed;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    animation: CuteenPlanetMove 2s cubic-bezier(.7, 0, 0, 1);
+    transform-origin: center bottom;
+  }
+  
+  @keyframes CuteenPlanetMove {
+    0% { transform: rotate(0); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .Cuteen_DarkPlanet:after {
+    position: absolute;
+    left: 35%;
+    top: 40%;
+    width: 9.375rem;
+    height: 9.375rem;
+    border-radius: 50%;
+    content: "";
+    background: linear-gradient(#fefefe, #fffbe8);
+  }
+  
