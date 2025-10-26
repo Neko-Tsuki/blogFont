@@ -1,4 +1,6 @@
-/* === 分类页面美化 - 适配 Volantis 风格 === */
+/* === 分类页面美化 - 支持亮色/暗色双主题 === */
+
+/* 暗色主题默认值（适配 Volantis 默认） */
 #cat .all-cats {
   margin-top: 20px;
   display: flex;
@@ -11,71 +13,132 @@
   align-items: center;
   padding: 12px 16px;
   border-radius: 8px;
-  background-color: var(--card-bg, #1e1e1e);
-  color: var(--font-color, #ccc);
   text-decoration: none;
   transition: all 0.2s ease;
-  border: 1px solid var(--line-color, #333);
   position: relative;
+  font-size: 14px;
 }
 
-/* 父分类：默认样式 */
+/* === 暗色模式样式 === */
+html[color-scheme="dark"] #cat .all-cats a,
+html:not([color-scheme]) #cat .all-cats a {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  color: #ccc;
+}
+
+html[color-scheme="dark"] #cat .all-cats a.child,
+html:not([color-scheme]) #cat .all-cats a.child {
+  background-color: #252525;
+  border-left: 3px solid #007bff;
+}
+
+html[color-scheme="dark"] #cat .all-cats a i.fa-folder-open {
+  color: #4da6ff;
+}
+
+html[color-scheme="dark"] #cat .all-cats a.child i.fa-folder-open {
+  color: #888;
+}
+
+html[color-scheme="dark"] #cat .all-cats a span.name {
+  color: #007bff;
+}
+
+html[color-scheme="dark"] #cat .all-cats a span.title {
+  color: #999;
+}
+
+/* === 亮色模式样式 === */
+html[color-scheme="light"] #cat .all-cats a {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #333333;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+html[color-scheme="light"] #cat .all-cats a.child {
+  background-color: #f8f9fa;
+  border-left: 3px solid #0d6efd;
+}
+
+html[color-scheme="light"] #cat .all-cats a i.fa-folder-open {
+  color: #0d6efd; /* Bootstrap 蓝 */
+}
+
+html[color-scheme="light"] #cat .all-cats a.child i.fa-folder-open {
+  color: #6c757d; /* 灰色 */
+}
+
+html[color-scheme="light"] #cat .all-cats a span.name {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+html[color-scheme="light"] #cat .all-cats a span.title {
+  color: #6c757d;
+}
+
+/* === 通用交互样式（亮暗共用） === */
 #cat .all-cats a:not(.child) {
   padding-left: 16px;
 }
 
-/* 子分类：增加左侧缩进 + 不同背景 */
 #cat .all-cats a.child {
   padding-left: 36px;
-  background-color: var(--block-bg, #252525);
-  border-left: 3px solid #007bff;
 }
 
-/* 图标样式 */
-#cat .all-cats a i.fa-folder-open {
-  color: #4da6ff; /* 父级亮蓝 */
-  font-size: 1.1em;
-}
-
-#cat .all-cats a.child i.fa-folder-open {
-  color: #888; /* 子级灰色 */
-}
-
-/* 分类名称 */
 #cat .all-cats a span.name {
   margin-left: 10px;
-  font-weight: 500;
-  color: var(--link-color, #007bff);
   flex: 1;
 }
 
-/* 文章数量 */
 #cat .all-cats a span.title {
-  color: var(--second-font-color, #999);
-  font-size: 0.9em;
   white-space: nowrap;
+  font-size: 0.9em;
 }
 
-/* 悬停效果 */
 #cat .all-cats a:hover {
   transform: translateY(-1px);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* 暗色悬停 */
+html[color-scheme="dark"] #cat .all-cats a:hover,
+html:not([color-scheme]) #cat .all-cats a:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   border-color: #007bff;
 }
 
-#cat .all-cats a:hover span.name {
+html[color-scheme="dark"] #cat .all-cats a:hover span.name,
+html:not([color-scheme]) #cat .all-cats a:hover span.name {
   color: #4da6ff;
 }
 
-#cat .all-cats a.child:hover {
+html[color-scheme="dark"] #cat .all-cats a.child:hover,
+html:not([color-scheme]) #cat .all-cats a.child:hover {
   border-left-color: #4da6ff;
 }
 
-/* 响应式优化 */
+/* 亮色悬停 */
+html[color-scheme="light"] #cat .all-cats a:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #0d6efd;
+}
+
+html[color-scheme="light"] #cat .all-cats a:hover span.name {
+  color: #0b5ed7;
+}
+
+html[color-scheme="light"] #cat .all-cats a.child:hover {
+  border-left-color: #0b5ed7;
+}
+
+/* 响应式 */
 @media (max-width: 768px) {
   #cat .all-cats a {
     padding: 10px 12px;
-    font-size: 0.95em;
+    font-size: 13px;
   }
   #cat .all-cats a span.name {
     margin-left: 8px;
