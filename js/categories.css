@@ -1,6 +1,5 @@
 /* === 分类页面美化 - 支持亮色/暗色双主题 === */
 
-/* 暗色主题默认值（适配 Volantis 默认） */
 #cat .all-cats {
   margin-top: 20px;
   display: flex;
